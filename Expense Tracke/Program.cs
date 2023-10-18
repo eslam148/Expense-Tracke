@@ -1,3 +1,6 @@
+using Expense_Tracke.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Expense_Tracke
 {
     public class Program
@@ -8,7 +11,10 @@ namespace Expense_Tracke
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options =>
 
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DbKey"))
+            ); ;
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
